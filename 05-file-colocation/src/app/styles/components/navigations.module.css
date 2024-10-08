@@ -1,5 +1,7 @@
 .container {
-    background-color: orange;
+    background-color: black;
+    color:orange;
+    padding:10px;
     font-size : 20px;
     font-weight:900;
     text-align : center;
