@@ -29,10 +29,14 @@ export default function Nav() {
   return (
     <div className={styles.container}>
       <ul className="flex justify-center items-center gap-5">
-        {menuItems.map((link)=> {
+        {menuItems.map((link,idx)=> {
           const isActive = pathname.startsWith(link.href)
           return (
-            <Link href={link.href}><li className={isActive && link.href!=="/" ? "text-orange-100" : ""}>{link.name}</li></Link>
+            <Link key={idx} href={link.href}>
+              <li className={isActive && link.href!=="/" ? "text-orange-100" : ""}>
+                {link.name}
+              </li>
+            </Link>
           )
         })}
       </ul>
