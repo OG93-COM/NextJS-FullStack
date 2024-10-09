@@ -6,6 +6,9 @@ export default function About() {
 
   const handleClick = () => {
     router.push("/")
+    // router.replace("/")
+    // router.back()
+    // router.forward()
   }
 
   return (
