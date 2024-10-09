@@ -25,7 +25,6 @@ const menuItems = [
 
 export default function Nav() {
   const pathname = usePathname()
-  console.log(pathname)
   
   return (
     <div className={styles.container}>
