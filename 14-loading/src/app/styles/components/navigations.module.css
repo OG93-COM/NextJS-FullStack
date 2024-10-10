@@ -1,0 +1,8 @@
+.container {
+    background-color: black;
+    color:orange;
+    padding:10px;
+    font-size : 15px;
+    font-weight:900;
+    text-align : center;
+}
