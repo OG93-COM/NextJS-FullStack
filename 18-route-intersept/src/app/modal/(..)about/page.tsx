@@ -1,6 +1,6 @@
 
 export default function AboutIntercept() {
   return (
-    <div>Intercept ABOUT</div>
+    <div>Intercept ABOUT (.)</div>
   )
 }
