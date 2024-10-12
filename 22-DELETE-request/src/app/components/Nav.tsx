@@ -10,17 +10,10 @@ const menuItems = [
     href:"/"
   },
   {
-    name:"About Us",
-    href:"/about"
+    name:"Reviews",
+    href:"/reviews"
   },
-  {
-    name:"Shop",
-    href:"/shop"
-  },
-  {
-    name:"Login",
-    href:"/login"
-  },
+
 ]
 
 export default function Nav() {
