@@ -12,6 +12,7 @@ export async function GET(_req:NextRequest, {params}:{params : {reviewId:string}
         const review = reviewTab.find(rev => rev.id === parseInt(params.reviewId))
         return NextResponse.json(review,{status:200})
     } catch (error) {
+        console.log(error)
         return NextResponse.json({message:"Review not found"}, {status:500})
     }
 }
