@@ -10,7 +10,8 @@ const nextConfig = {
     ],
     deviceSizes:[300,420,768,1024,1200],
     imageSizes: [8,16,32,48,64,96],
-    formats:["image/webp","image/avif"]
+    formats:["image/webp","image/avif"],
+    minimumCacheTTL:60,
   },
 };
 
