@@ -10,6 +10,7 @@ import { useEffect } from "react";
 const SignInBtn = () => {
   const router = useRouter()
   const {data: session} = useSession()
+  console.log(session)
 
   useEffect(()=>{
     if(session) {
@@ -20,12 +21,12 @@ const SignInBtn = () => {
 
   return (
     <div className="flex flex-col text-sm">
-      <div onClick={()=> signIn('github')} className="btn-singin-platform">
+      <button onClick={()=> signIn('github')} className="btn-singin-platform">
         <FaGithub size={30} /> Sign In With Github
-      </div>
-      <div onClick={()=> signIn('google')} className="btn-singin-platform">
+      </button>
+      <button onClick={()=> signIn('google')} className="btn-singin-platform">
         <FcGoogle size={30} /> Sign In With Google
-      </div>
+      </button>
     </div>
   );
 };
