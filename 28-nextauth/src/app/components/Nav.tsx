@@ -8,6 +8,8 @@ import { FaBloggerB } from "react-icons/fa";
 import { MdOutlineDashboard } from "react-icons/md";
 import { IoMdLogIn } from "react-icons/io";
 import { FaUserLarge } from "react-icons/fa6";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 
 const menuItems = [
@@ -26,15 +28,11 @@ const menuItems = [
     href: "/dashboard",
     icon: MdOutlineDashboard,
   },
-  {
-    name: "Login",
-    href: "/login",
-    icon: IoMdLogIn,
-  },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
+  const {data : session} = useSession()
 
   return (
     <nav className={`${styles.container} flex justify-between px-4`}>
@@ -55,9 +53,15 @@ export default function Nav() {
           );
         })}
       </ul>
-      <Link href={"/user"} className='bg-white h-8 w-8 p-1 rounded-full hover:scale-105 duration-300 flex justify-center items-center'>
-        <FaUserLarge />
+      {session ? (
+        <Link href={"/login"} className='relative h-8 w-8 rounded-full border border-white'>
+        <Image src={session.user?.image as string} fill alt={session.user?.name as string} className="rounded-full"/>
       </Link>
+      ) : (
+        <div className="hover:text-orange-500 flex gap-1 items-center">
+          <IoMdLogIn/>Login
+        </div>
+      )}
     </nav>
   );
 }

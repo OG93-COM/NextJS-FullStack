@@ -10,21 +10,20 @@ export default function Dashboard() {
     const router = useRouter()
 
     const {data:session} = useSession()
-    const user = session?.user
-    const imgUser = session?.user?.image
-    const userName = session?.user?.name
+
 
   return (
     <>
     {session ? (
         <div className="mx-auto h-screen flex flex-col justify-center items-center gap-3">
-        <Image src={imgUser} width={88} height={88} alt={userName} className="rounded-full shadow-md"/>
-        <p className="text-3xl font-bold">Welcome {user?.name}</p>
+        <Image src={session.user?.image as string} width={88} height={88} alt={session.user?.name as string} className="rounded-full shadow-md"/>
+        <p className="text-3xl font-bold">Welcome {session.user?.name}</p>
+        <p>{session.user?.email}</p>
         <button
-              className="text-md flex items-center gap-2"
+              className="bg-slate-100 border-2 border-slate-200 rounded-lg px-3 py-1 text-md flex items-center gap-2 hover:text-slate-600 duration-300"
               onClick={() => signOut()}>
               Logout <IoLogOutOutline />
-          </button>
+        </button>
       </div>
     ) : router.push('/login')}
     </>
