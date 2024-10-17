@@ -1,5 +1,30 @@
 import Link from "next/link";
-import React from "react";
+import { toast } from 'react-toastify';
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import {doc, setDoc} from "firebase/firestore"
+import { db, auth } from "../db/firebaseConfig";
+import { useRouter } from "next/router";
+import 'react-toastify/dist/ReactToastify.css';
+
+interface FormData{
+    email: string,
+    password: string,
+    confirmPassword: string,
+}
+
+const formSchema = z.object({
+    email: z.string().min(1, {message:"Email is Required"}).email("Format Invalid").max(300, {message:"Email too long"}),
+    password: z.string().min(6, {message:"Password is Required"}).max(300, {message:"Password too long"}),
+    confirmPassword: z.string().min(6, {message:"Password is Required"}).max(300, {message:"Password too long"}),
+}).refine(({password, confirmPassword}) => {
+    return confirmPassword === password
+}, {
+    message:"Password dosnt match",
+    path: ["confirmPassword"]
+})
 
 export default function RegisterForm() {
   return (
