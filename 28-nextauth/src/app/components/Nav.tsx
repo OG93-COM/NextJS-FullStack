@@ -58,9 +58,9 @@ export default function Nav() {
         <Image src={session.user?.image as string} fill alt={session.user?.name as string} className="rounded-full"/>
       </Link>
       ) : (
-        <div className="hover:text-orange-500 flex gap-1 items-center">
+        <Link href={"/login"} className="hover:text-orange-500 flex gap-1 items-center">
           <IoMdLogIn/>Login
-        </div>
+        </Link>
       )}
     </nav>
   );
