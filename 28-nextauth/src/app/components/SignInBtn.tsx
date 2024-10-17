@@ -2,22 +2,11 @@
 
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { signIn } from "next-auth/react";
 
 
 const SignInBtn = () => {
-  const router = useRouter()
-  const {data: session} = useSession()
-  console.log(session)
-
-  useEffect(()=>{
-    if(session) {
-      router.push("/dashboard")
-    }
-
-  },[session, router])
+  
 
   return (
     <div className="flex flex-col text-sm">
