@@ -5,7 +5,7 @@ import { collection, onSnapshot, doc } from "firebase/firestore"
 import {db} from '../db/firebaseConfig'
 import {DataType, DbContextType} from '../Types/useTypes'
 
-const MembersContext = createContext<DataType | null>(null)
+const MembersContext = createContext<DbContextType | null>(null)
 
 export const useFirebase = () => {
     const context = useContext(MembersContext)
