@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .btn-singin-platform {
-    @apply flex justify-center items-center gap-5 w-[300px] border shadow-sm my-2 p-4 rounded-full hover:text-slate-700 hover:scale-105 duration-200 cursor-pointer
+    @apply flex justify-center items-center gap-5 w-[300px] border shadow-sm p-4 rounded-full hover:text-slate-700 hover:scale-105 duration-200 cursor-pointer
   }
