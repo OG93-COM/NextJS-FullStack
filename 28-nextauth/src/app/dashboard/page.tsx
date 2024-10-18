@@ -4,6 +4,8 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoLogOutOutline } from "react-icons/io5";
+import { FaRegUser } from "react-icons/fa";
+
 
 
 export default function Dashboard() {
@@ -16,7 +18,9 @@ export default function Dashboard() {
     <>
     {session ? (
         <div className="mx-auto h-screen flex flex-col justify-center items-center gap-3">
-        <Image src={session.user?.image as string} width={88} height={88} alt={session.user?.name as string} className="rounded-full shadow-md"/>
+        {session.user?.image && (
+          <Image src={session.user?.image as string} width={88} height={88} alt={session.user?.name as string} className="rounded-full shadow-md"/>
+        )}
         <p className="text-3xl font-bold">Welcome {session.user?.name}</p>
         <p>{session.user?.email}</p>
         <button
