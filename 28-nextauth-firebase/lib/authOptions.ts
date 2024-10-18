@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth";
-import GithubProvider from 'next-auth/providers/github'
-import GoogleProvider from 'next-auth/providers/google'
-import CredentialsProvider from 'next-auth/providers/credentials'
+import GithubProvider from '../node_modules/next-auth/providers/github'
+import GoogleProvider from '../node_modules/next-auth/providers/google'
+import CredentialsProvider from '../node_modules/next-auth/providers/credentials'
 import {auth} from '../src/app/db/firebaseConfig'
 import { signInWithEmailAndPassword } from "firebase/auth";
 
