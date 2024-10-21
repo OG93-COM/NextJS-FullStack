@@ -18,13 +18,12 @@ export type DbContextType = {
 export type ModalType = {
     openModal:boolean,
     onClose: ()=> void,
-    onOpen: ()=> void,
-    isUpdate?: boolean,
+    onOpen?: ()=> void,
     member?: any,
-    children?: any,
+    isUpdate?: boolean,
 }
 
-export type FormData = {
+export type FormType = {
     lastName:string,
     firstName:string,
     email:string,

@@ -1,10 +1,25 @@
 import useModal from "../hooks/useModal"
 import { IoMdClose } from "react-icons/io";
-import { ModalType } from "../Types/useTypes";
+import { ModalType, FormType } from "../Types/useTypes";
+import {useForm, SubmitHandler} from 'react-hook-form'
+import { yupResolver } from "@hookform/resolvers/yup";
+import { validationSchema } from "../schema/formSchema";
+import { useEffect } from "react";
 
 
-export default function FormModal({onClose, openModal, isUpdate}: ModalType) {
+export default function FormModal({onClose, openModal, isUpdate, member}: ModalType) {
     
+    const {handleSubmit, register, reset, formState:{errors}} = useForm<FormType>({
+        resolver: yupResolver(validationSchema)
+    })
+
+    useEffect(()=>{
+        if(isUpdate && member){
+            reset(member)
+        }
+
+    },[isUpdate, member, reset])
+
   return (
     <>
     {openModal && (
@@ -15,23 +30,31 @@ export default function FormModal({onClose, openModal, isUpdate}: ModalType) {
                 </div>
                 <form className="flex flex-col gap-1 w-[400px] p-4">
                     <label htmlFor="lastName">Last Name</label>
-                    <input type="text" id="lastName" className="border border-gray-300 p-2 rounded-md" placeholder="Last Name Here"/>
+                    <input {...register("lastName")} id="lastName" className="border border-gray-300 p-2 rounded-md" placeholder="Last Name Here"/>
+                    {errors.lastName && <span className="text-xs text-red-500">{errors.lastName.message}</span>}
                     <label htmlFor="firstName">First Name</label>
-                    <input type="text" id="firstName" className="border border-gray-300 p-2 rounded-md" placeholder="First Name Here"/>
+                    <input {...register("firstName")} id="firstName" className="border border-gray-300 p-2 rounded-md" placeholder="First Name Here"/>
+                    {errors.firstName && <span className="text-xs text-red-500">{errors.firstName.message}</span>}
                     <label htmlFor="email">Email</label>
-                    <input type="email" id="email" className="border border-gray-300 p-2 rounded-md" placeholder="First Name Here"/>
+                    <input {...register("email")} id="email" className="border border-gray-300 p-2 rounded-md" placeholder="First Name Here"/>
+                    {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
                     <label htmlFor="phone">Phone</label>
-                    <input type="text" id="phone" className="border border-gray-300 p-2 rounded-md" placeholder="Your Phone Number Here"/>
+                    <input {...register("phone")} id="phone" className="border border-gray-300 p-2 rounded-md" placeholder="Your Phone Number Here"/>
+                    {errors.phone && <span className="text-xs text-red-500">{errors.phone.message}</span>}
                     <label htmlFor="adress">Adress</label>
-                    <input type="text" id="adress" className="border border-gray-300 p-2 rounded-md" placeholder="Your Adress Here"/>
-                    <label htmlFor="postal">Postal</label>
-                    <input type="text" id="postal" className="border border-gray-300 p-2 rounded-md" placeholder="Your Postal Code here exp : 7070"/>
+                    <input {...register("adress")} id="adress" className="border border-gray-300 p-2 rounded-md" placeholder="Your Adress Here"/>
+                    {errors.adress && <span className="text-xs text-red-500">{errors.adress.message}</span>}
+                    <label htmlFor="cp">Postal</label>
+                    <input {...register("cp")} id="cp" className="border border-gray-300 p-2 rounded-md" placeholder="Your Postal Code here exp : 7070"/>
+                    {errors.cp && <span className="text-xs text-red-500">{errors.cp.message}</span>}
                     <label htmlFor="city">City</label>
-                    <input type="text" id="city" className="border border-gray-300 p-2 rounded-md" placeholder="exp : Paris"/>
+                    <input {...register("city")} id="city" className="border border-gray-300 p-2 rounded-md" placeholder="exp : Paris"/>
+                    {errors.city && <span className="text-xs text-red-500">{errors.city.message}</span>}
                     <label htmlFor="country">Country</label>
-                    <input type="text" id="country" className="border border-gray-300 p-2 rounded-md" placeholder="exp : France"/>
+                    <input {...register("country")} id="country" className="border border-gray-300 p-2 rounded-md" placeholder="exp : France"/>
+                    {errors.country && <span className="text-xs text-red-500">{errors.country.message}</span>}
                     <label htmlFor="image">Image</label>
-                    <input type="file" id="image"  accept="image/gif, image/jpeg, image/png, image/jpg, image/webp" className="border border-gray-300 p-2 rounded-md"/>
+                    <input {...register("image")} type="file" id="image"  accept="image/gif, image/jpeg, image/png, image/jpg, image/webp" className="border border-gray-300 p-2 rounded-md"/>
                     <button type="submit" className="text-white bg-slate-700 p-3 rounded-md hover:bg-slate-600 my-2">
                         {isUpdate ? "Update Member" : "Add New Membre"}
                     </button>

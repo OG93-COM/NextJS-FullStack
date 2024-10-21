@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useFirebase } from "../context/dataContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { DataType } from "../Types/useTypes";
 import useModal from "../hooks/useModal";
@@ -31,7 +30,7 @@ export default function DataItems({member}:{member : DataType}) {
                 <button onClick={onOpen} className="hover:scale-110 duration-300 cursor-pointer"><FaEdit/> </button>
                 <button className="hover:scale-110 duration-300 cursor-pointer text-red-500"><FaTrash/> </button>
             </div>
-            <FormModal isUpdate openModal={openModal} onClose={onClose}/>
+            <FormModal isUpdate openModal={openModal} onClose={onClose} member={member}/>
         </td>
       </tr>
 )}
