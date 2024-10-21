@@ -4,6 +4,7 @@ import DataTab from "./components/DataTab";
 import { GrUserNew } from "react-icons/gr";
 import useModal from "./hooks/useModal";
 import FormModal from "./components/FormModal";
+import { DataType, FormData } from "./Types/useTypes";
 
 export default function Home() {
 

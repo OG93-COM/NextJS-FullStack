@@ -23,3 +23,15 @@ export type ModalType = {
     member?: any,
     children?: any,
 }
+
+export type FormData = {
+    lastName:string,
+    firstName:string,
+    email:string,
+    phone:number,
+    adress:string,
+    cp:number,
+    city:string,
+    country:string,
+    image?:string,
+}
