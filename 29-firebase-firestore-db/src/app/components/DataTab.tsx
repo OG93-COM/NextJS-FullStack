@@ -1,9 +1,10 @@
+import { useFirebase } from "../context/dataContext";
 import DataItems from "./DataItems";
 
 export default function DataTab() {
-  
+    const { members } = useFirebase();
   return (
-    <table className="table-auto shadow-lg rounded-lg  divide-x divide-y">
+    <table className="shadow-lg rounded-lg divide-x divide-y">
       <thead className="bg-slate-800 text-white rounded-lg">
         <tr>
           <th className="p-3 text-sm border">Id</th>
@@ -20,7 +21,9 @@ export default function DataTab() {
         </tr>
       </thead>
       <tbody>
-        <DataItems />
+        {members.map(member => (
+            <DataItems key={member.id} member={member}/>
+        ))}
       </tbody>
     </table>
   );
