@@ -14,3 +14,12 @@ export type DataType = {
 export type DbContextType = {
     members: DataType[]
 }
+
+export type ModalType = {
+    openModal:boolean,
+    onClose: ()=> void,
+    onOpen: ()=> void,
+    isUpdate?: boolean,
+    member?: any,
+    children?: any,
+}
