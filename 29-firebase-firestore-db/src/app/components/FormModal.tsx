@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 
 export default function FormModal({onClose, openModal, isUpdate, member}: ModalType) {
-    
+
     const {handleSubmit, register, reset, formState:{errors}} = useForm<FormType>({
         resolver: yupResolver(validationSchema)
     })
