@@ -10,24 +10,35 @@ import {ref , uploadBytes, getDownloadURL} from 'firebase/storage'
 import { storage } from "../db/firebaseConfig";
 
 export default function FormModal({onClose, openModal, isUpdate, member}: ModalType) {
-    const [file,setFile] = useState<File | undefined>();
-    const {addMember} = useFirebase()
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedFile = e.target.files?.[0]
-        setFile(selectedFile)
-    }
-
     const {handleSubmit, register, reset, formState:{errors}} = useForm<FormType>({
         resolver: yupResolver(validationSchema)
     })
 
+    //For Add File
+    const [file,setFile] = useState<File | undefined>();
+    const {addMember} = useFirebase()
+    const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = e.target.files?.[0]
+        setFile(selectedFile)
+    }
+
+
+    //Reset Form with data member to update with the reset
     useEffect(()=>{
         if(isUpdate && member){
             reset(member)
         }
 
     },[isUpdate, member, reset])
+
+    //Function On Submit
+    const onSubmit:SubmitHandler<FormType> = async (FormData) => {
+        try {
+            
+        } catch (error) {
+            console.log("Error Sumbmit Form ❌", error)
+        }
+    }
 
   return (
     <>
@@ -37,7 +48,7 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
                 <div onClick={onClose} className="flex justify-end cursor-pointer">
                     <IoMdClose className="self-end text-xl"/>
                 </div>
-                <form className="flex flex-col gap-1 w-[400px] p-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-1 w-[400px] p-4">
                     <label htmlFor="lastName">Last Name</label>
                     <input {...register("lastName")} id="lastName" className="border border-gray-300 p-2 rounded-md" placeholder="Last Name Here"/>
                     {errors.lastName && <span className="text-xs text-red-500">{errors.lastName.message}</span>}
@@ -63,7 +74,7 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
                     <input {...register("country")} id="country" className="border border-gray-300 p-2 rounded-md" placeholder="exp : France"/>
                     {errors.country && <span className="text-xs text-red-500">{errors.country.message}</span>}
                     <label htmlFor="image">Image</label>
-                    <input {...register("image")} type="file" id="image"  accept="image/gif, image/jpeg, image/png, image/jpg, image/webp" className="border border-gray-300 p-2 rounded-md"/>
+                    <input {...register("image")} onChange={handleChangeImg} type="file" id="image"  accept="image/gif, image/jpeg, image/png, image/jpg, image/webp" className="border border-gray-300 p-2 rounded-md"/>
                     <button type="submit" className="text-white bg-slate-700 p-3 rounded-md hover:bg-slate-600 my-2">
                         {isUpdate ? "Update Member" : "Add New Membre"}
                     </button>
