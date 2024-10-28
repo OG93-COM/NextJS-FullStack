@@ -6,6 +6,10 @@ import useModal from "./hooks/useModal";
 import FormModal from "./components/FormModal";
 import { DataType, FormType } from "./Types/useTypes";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  
+
 export default function Home() {
 
   const {onOpen, onClose, openModal} = useModal()
@@ -19,6 +23,8 @@ export default function Home() {
       </button>
       <DataTab/>
       <FormModal onOpen={onOpen} onClose={onClose} openModal={openModal} />
+
+      <ToastContainer/>
     </div>
   );
 }

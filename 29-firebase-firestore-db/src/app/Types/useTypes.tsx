@@ -12,7 +12,8 @@ export type DataType = {
 }
 
 export type DbContextType = {
-    members: DataType[]
+    members: DataType[],
+    addMember: (membersData: Omit<DataType, "id"> & {image:string} ) => Promise<void>,
 }
 
 export type ModalType = {

@@ -1,9 +1,11 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect } from "react"
-import { collection, onSnapshot, doc } from "firebase/firestore"
+import { collection, onSnapshot, doc, addDoc } from "firebase/firestore"
 import {db} from '../db/firebaseConfig'
 import {DataType, DbContextType} from '../Types/useTypes'
+import { toast } from 'react-toastify';
+
 
 const MembersContext = createContext<DbContextType | null>(null)
 
@@ -28,8 +30,20 @@ export const MembersProvider : React.FC<{children: React.ReactNode}> = ({childre
         return () => unsubscribe()
     },[])
 
+    const addMember = async (membersData : Omit<DataType, "id"> & {image:string}) => {
+        try {
+            const docRef = await addDoc(collection(db, "members"), membersData)
+            const newMember:DataType = {id:docRef.id, ...membersData}
+            setMembers([...members, newMember ])
+            toast.success("member Added ✅")
+        } catch (error) {
+            console.log("Error Add Member ❌", error)
+        }
+    }
+
     const value = {
-        members
+        members,
+        addMember
     }
     return <MembersContext.Provider value={value}>{children}</MembersContext.Provider>
 }

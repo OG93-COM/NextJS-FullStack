@@ -4,11 +4,19 @@ import { ModalType, FormType } from "../Types/useTypes";
 import {useForm, SubmitHandler} from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "../schema/formSchema";
-import { useEffect } from "react";
-
-
+import { useEffect, useState } from "react";
+import { useFirebase } from "../context/dataContext";
+import {ref , uploadBytes, getDownloadURL} from 'firebase/storage'
+import { storage } from "../db/firebaseConfig";
 
 export default function FormModal({onClose, openModal, isUpdate, member}: ModalType) {
+    const [file,setFile] = useState<File | undefined>();
+    const {addMember} = useFirebase()
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = e.target.files?.[0]
+        setFile(selectedFile)
+    }
 
     const {handleSubmit, register, reset, formState:{errors}} = useForm<FormType>({
         resolver: yupResolver(validationSchema)
