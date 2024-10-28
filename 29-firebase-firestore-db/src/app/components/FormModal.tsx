@@ -34,7 +34,18 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
     //Function On Submit
     const onSubmit:SubmitHandler<FormType> = async (FormData) => {
         try {
-            
+            // Add Image
+            let imageUrl = "";
+            if(file){
+                const imageRef = ref(storage, `imagesProfile/${file.name}`)
+                await uploadBytes(imageRef, file);
+                imageUrl = await getDownloadURL(imageRef)
+            }else {
+                imageUrl = member?.image || "" ;
+            }
+            //Add member
+            addMember({...FormData, image:imageUrl})
+            onClose()
         } catch (error) {
             console.log("Error Sumbmit Form ❌", error)
         }
