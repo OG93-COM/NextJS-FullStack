@@ -16,7 +16,7 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
 
     //For Add File
     const [file,setFile] = useState<File | undefined>();
-    const {addMember} = useFirebase()
+    const {addMember, updateMember} = useFirebase()
     const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0]
         setFile(selectedFile)
@@ -43,9 +43,16 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
             }else {
                 imageUrl = member?.image || "" ;
             }
-            //Add member
-            addMember({...FormData, image:imageUrl})
-            onClose()
+
+            if(isUpdate && member){
+                //Update Member
+                updateMember({...FormData, id: member.id, image:imageUrl})
+                onClose()
+            } else {
+                //Add member
+                addMember({...FormData, image:imageUrl})
+                onClose()
+            }
         } catch (error) {
             console.log("Error Sumbmit Form ❌", error)
         }

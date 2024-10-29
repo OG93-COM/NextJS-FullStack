@@ -11,9 +11,12 @@ export type DataType = {
     image:string,
 }
 
+// Type of our CRUD
 export type DbContextType = {
     members: DataType[],
     addMember: (membersData: Omit<DataType, "id"> & {image:string} ) => Promise<void>,
+    updateMember: (member : DataType) => Promise<void>,
+    deleteMember: (id: string) => Promise<void>,
 }
 
 export type ModalType = {

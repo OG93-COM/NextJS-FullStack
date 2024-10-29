@@ -3,12 +3,16 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { DataType } from "../Types/useTypes";
 import useModal from "../hooks/useModal";
 import FormModal from "./FormModal";
+import { useFirebase } from "../context/dataContext";
 
 
 export default function DataItems({member}:{member : DataType}) {
 
   const imgNotFound = "https://firebasestorage.googleapis.com/v0/b/app-firestore-9d1f1.appspot.com/o/imagesProfile%2FimgNotFound.png?alt=media&token=838aa4da-4a6a-430c-aabb-c200e5758f7b"
   const {onOpen, onClose, openModal} = useModal()
+
+  //Delete Member
+  const {deleteMember} = useFirebase()
 
   return (
 
@@ -28,7 +32,7 @@ export default function DataItems({member}:{member : DataType}) {
         <td className="p-3 text-sm border">
             <div className="flex justify-center items-center gap-2">
                 <button onClick={onOpen} className="hover:scale-110 duration-300 cursor-pointer"><FaEdit/> </button>
-                <button className="hover:scale-110 duration-300 cursor-pointer text-red-500"><FaTrash/> </button>
+                <button onClick={() => deleteMember(member.id)} className="hover:scale-110 duration-300 cursor-pointer text-red-500"><FaTrash/> </button>
             </div>
             <FormModal isUpdate openModal={openModal} onClose={onClose} member={member}/>
         </td>
