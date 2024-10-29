@@ -14,7 +14,7 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
         resolver: yupResolver(validationSchema)
     })
 
-    //For Add File
+    //For Add File and Update File
     const [file,setFile] = useState<File | undefined>();
     const {addMember, updateMember} = useFirebase()
     const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
     },[isUpdate, member, reset])
 
     //Function On Submit
-    const onSubmit:SubmitHandler<FormType> = async (FormData) => {
+    const onSubmit:SubmitHandler<FormType> = async (formData) => {
         try {
             // Add Image
             let imageUrl = "";
@@ -46,11 +46,11 @@ export default function FormModal({onClose, openModal, isUpdate, member}: ModalT
 
             if(isUpdate && member){
                 //Update Member
-                updateMember({...FormData, id: member.id, image:imageUrl})
+                updateMember({...formData, id: member.id, image:imageUrl})
                 onClose()
             } else {
                 //Add member
-                addMember({...FormData, image:imageUrl})
+                addMember({...formData, image:imageUrl})
                 onClose()
             }
         } catch (error) {
