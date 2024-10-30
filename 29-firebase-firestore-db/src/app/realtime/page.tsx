@@ -12,7 +12,7 @@ export default function Realtime() {
   const {todo, addTodo} = useRealtime()
   const [todoText, setTodoText] = useState<string>('')
   const [isBtnActive, setIsBtnActive] = useState<Boolean>(false)
-  
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodoText(e.target.value)
