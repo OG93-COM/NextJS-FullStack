@@ -48,7 +48,7 @@ export default function Realtime() {
 
       <ul>
         {todo.map(item => (
-          <li className="mb-4 p-5 rounded-md flex justify-between items-center shadow-md hover:shadow-lg">
+          <li className="mb-4 p-5 rounded-md flex justify-between items-center shadow-md hover:shadow-lg duration-300">
             {item.textTodo}
             <div className="flex justify-center items-center gap-2">
               <FaEdit className="hover:text-blue-500 cursor-pointer" size={20}/>
