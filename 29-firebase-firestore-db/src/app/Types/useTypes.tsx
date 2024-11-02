@@ -19,6 +19,7 @@ export type DbContextType = {
     deleteMember: (id: string) => Promise<void>,
 }
 
+// Modal Types
 export type ModalType = {
     openModal:boolean,
     onClose: ()=> void,
@@ -27,6 +28,7 @@ export type ModalType = {
     isUpdate?: boolean,
 }
 
+// Type of Form
 export type FormType = {
     lastName:string,
     firstName:string,

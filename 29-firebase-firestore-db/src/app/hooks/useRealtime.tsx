@@ -21,7 +21,6 @@ export function useRealtime(){
                 todoList.push(todo)
             })
             setTodo(todoList)
-            console.log(todoList)
         }
     const todosListener = onValue(todoRef, onDataChange);
     return ()=> {
