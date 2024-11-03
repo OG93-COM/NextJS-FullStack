@@ -1,10 +1,10 @@
 "use client"
+
 import { useEffect, useState } from "react"
 import { useRealtime } from "../hooks/useRealtime"
 import { ToastContainer, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEdit, FaTrash } from "react-icons/fa";
-
 
 
 export default function Realtime() {
