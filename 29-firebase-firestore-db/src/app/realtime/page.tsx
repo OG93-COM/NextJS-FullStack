@@ -9,7 +9,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 export default function Realtime() {
 
-  const {todo, addTodo, updateTodo, startEditingTodo, editingTodo} = useRealtime()
+  const {todo, addTodo, updateTodo, startEditingTodo, editingTodo, deleteTodo} = useRealtime()
   const [todoText, setTodoText] = useState<string>('')
   const [isBtnActive, setIsBtnActive] = useState<Boolean>(false)
 
@@ -77,7 +77,7 @@ export default function Realtime() {
               {item.textTodo}
               <div className="flex justify-center items-center gap-2">
                 <FaEdit onClick={()=> startEditingTodo(item)} className="hover:text-blue-500 cursor-pointer" size={20}/>
-                <FaTrash className="hover:text-red-500 cursor-pointer" size={18}/>
+                <FaTrash onClick={()=> deleteTodo(item.id)} className="hover:text-red-500 cursor-pointer" size={18}/>
               </div>
             </>
             )}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { database } from "../db/firebaseConfig";
-import { push, ref, onValue, update } from "firebase/database";
+import { push, ref, onValue, update, remove } from "firebase/database";
 
 interface Todos {
     id:string,
@@ -56,12 +56,21 @@ export function useRealtime(){
     const startEditingTodo = (todo: Todos) => {
         setEditingTodo(todo)
     }
-
+    
+    // Delete The todo
+    const deleteTodo = async (id: string) => {
+        try {
+            await remove(ref(database,`todos/${id}`))
+        } catch (error) {
+            console.log("Error Delete Todo ❌❌")
+        }
+    }
     return {
         todo,
         editingTodo,
         addTodo,
         updateTodo,
         startEditingTodo,
+        deleteTodo
     }
 }
