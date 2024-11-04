@@ -43,7 +43,7 @@ export function useRealtime(){
     //Update Todos to database Realtime
     const updateTodo = async(id: string, newTodoText:string) => {
         try {
-            await update(ref(database,`todos/${id}`), {todoText:newTodoText});
+            await update(ref(database,`todos/${id}`), {textTodo:newTodoText});
             setEditingTodo(null)
 
 
