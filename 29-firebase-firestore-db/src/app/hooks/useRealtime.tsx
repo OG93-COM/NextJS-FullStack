@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { database } from "../db/firebaseConfig";
-import { push, ref, onValue } from "firebase/database";
+import { push, ref, onValue, update } from "firebase/database";
 
 interface Todos {
     id:string,
@@ -9,8 +9,10 @@ interface Todos {
 
 export function useRealtime(){
     const [todo, setTodo] = useState<Todos[]>([])
+    const [editingTodo, setEditingTodo] = useState<Todos | null>(null)
 
-    //Read from Database
+
+    //Read from Database Realtime
     useEffect(()=>{
         const todoRef = ref(database,"todos");
         const onDataChange = (snapshot:any) => {
@@ -28,7 +30,7 @@ export function useRealtime(){
     }
     },[])
 
-    //add to database
+    //add to database Realtime
     const addTodo = async(todoText:string) => {
         try {
             const todoRef = ref(database,"todos")
@@ -38,8 +40,28 @@ export function useRealtime(){
         }
     }
 
+    //Update Todos to database Realtime
+    const updateTodo = async(id: string, newTodoText:string) => {
+        try {
+            await update(ref(database,`todos/${id}`), {todoText:newTodoText});
+            setEditingTodo(null)
+
+
+        } catch (error) {
+            console.log("Error Update Todo ❌❌")
+        }
+    }
+    
+    // Start Editing the todo function
+    const startEditingTodo = (todo: Todos) => {
+        setEditingTodo(todo)
+    }
+
     return {
         todo,
-        addTodo
+        editingTodo,
+        addTodo,
+        updateTodo,
+        startEditingTodo,
     }
 }

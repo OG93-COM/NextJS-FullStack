@@ -9,7 +9,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 export default function Realtime() {
 
-  const {todo, addTodo} = useRealtime()
+  const {todo, addTodo, updateTodo, startEditingTodo, editingTodo} = useRealtime()
   const [todoText, setTodoText] = useState<string>('')
   const [isBtnActive, setIsBtnActive] = useState<Boolean>(false)
 
