@@ -29,7 +29,7 @@ const menuItems = [
 
 export default function Nav() {
   const pathname = usePathname()
-  
+
   return (
     <div className={styles.container}>
       <ul className="flex justify-center items-center gap-5">
