@@ -51,12 +51,12 @@ export function useRealtime(){
             console.log("Error Update Todo ❌❌")
         }
     }
-    
+
     // Start Editing the todo function
     const startEditingTodo = (todo: Todos) => {
         setEditingTodo(todo)
     }
-    
+
     // Delete The todo
     const deleteTodo = async (id: string) => {
         try {
