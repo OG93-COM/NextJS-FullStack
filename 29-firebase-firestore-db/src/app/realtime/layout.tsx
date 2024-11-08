@@ -8,6 +8,12 @@ export const metadata:Metadata = {
     description: 'Realttime database from Firebase',
     images: ["https://miro.medium.com/v2/resize:fit:1024/1*csQT-n_POQQTfDLywDEdQQ.png"]
   },
+  twitter: {
+    card: "summary_large_image",
+    title: 'Realtime for twitter',
+    description: 'Realttime database from Firebase',
+    images: ["https://miro.medium.com/v2/resize:fit:1024/1*csQT-n_POQQTfDLywDEdQQ.png"]
+  },
 }
 
 export default function RealTimeLayout({children}: Readonly<{children: React.ReactNode;}>) {

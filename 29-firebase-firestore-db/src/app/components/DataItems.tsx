@@ -19,7 +19,9 @@ export default function DataItems({member}:{member : DataType}) {
       <tr key={member.id} >
         <td className="p-3 text-sm border">{member.id}</td>
         <td className="p-3 text-sm border">
-            {member.image ? <Image src={member.image} width={40}  height={40} alt={member.firstName}/> : <Image src={imgNotFound} width={40}  height={40} alt="Image Not Found"/>}
+            {member.image ?
+                <Image src={member.image} width={40}  height={40} alt={member.firstName}/>
+                : <Image src={imgNotFound} width={40}  height={40} alt="Image Not Found"/>}
         </td>
         <td className="p-3 text-sm border">{member.firstName}</td>
         <td className="p-3 text-sm border">{member.lastName}</td>
