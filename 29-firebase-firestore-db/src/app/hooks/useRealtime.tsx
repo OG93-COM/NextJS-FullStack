@@ -59,10 +59,12 @@ export function useRealtime(){
 
     // Delete The todo
     const deleteTodo = async (id: string) => {
-        try {
-            await remove(ref(database,`todos/${id}`))
-        } catch (error) {
-            console.log("Error Delete Todo ❌❌")
+        if(confirm("Sure you want to delete this item")){
+            try {
+                await remove(ref(database,`todos/${id}`))
+            } catch (error) {
+                console.log("Error Delete Todo ❌❌")
+            }
         }
     }
     return {

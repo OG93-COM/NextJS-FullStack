@@ -56,12 +56,14 @@ export const MembersProvider : React.FC<{children: React.ReactNode}> = ({childre
 
     // Function Delete Member
     const deleteMember = async (id:string) => {
-        try {
-            await deleteDoc(doc(db, "members", id))
-            setMembers(members.filter((m) => m.id !== id))
-            toast.success("Member Deleted" )
-        } catch (error) {
-            console.log("Error Add Member ❌", error)
+        if(confirm("Sure You want to delete this member?")) {
+            try {
+                await deleteDoc(doc(db, "members", id))
+                setMembers(members.filter((m) => m.id !== id))
+                toast.success("Member Deleted" )
+            } catch (error) {
+                console.log("Error Add Member ❌", error)
+            }
         }
     }
 

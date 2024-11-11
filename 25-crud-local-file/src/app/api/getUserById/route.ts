@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import users from "@/data.json"
+import users from "../../../../data.json"
 
 export async function GET(req:NextRequest) {
     const {searchParams} = new URL(req.url)

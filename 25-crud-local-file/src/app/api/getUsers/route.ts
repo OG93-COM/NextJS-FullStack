@@ -4,7 +4,7 @@ import path from "path";
 
 export async function GET(req:NextRequest) {
     const filePath = path.join(process.cwd(), "data.json")
-    const data = await fs.promises.readFile(filePath, "utf-8")
+    const data = fs.readFileSync(filePath, "utf-8")
 
     const user = JSON.parse(data)
 
