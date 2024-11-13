@@ -40,3 +40,9 @@ export type FormType = {
     country:string,
     image?:string,
 }
+
+// Type of TODOS
+export type Todos = {
+    id:string,
+    textTodo:string,
+}

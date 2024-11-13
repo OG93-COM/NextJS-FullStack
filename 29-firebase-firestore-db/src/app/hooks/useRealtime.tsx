@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import { database } from "../db/firebaseConfig";
 import { push, ref, onValue, update, remove } from "firebase/database";
+import { Todos } from "../Types/useTypes";
 
-interface Todos {
-    id:string,
-    textTodo:string,
-}
 
 export function useRealtime(){
     const [todo, setTodo] = useState<Todos[]>([])
     const [editingTodo, setEditingTodo] = useState<Todos | null>(null)
-
 
     //Read from Database Realtime
     useEffect(()=>{
