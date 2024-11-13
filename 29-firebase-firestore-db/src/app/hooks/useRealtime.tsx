@@ -8,6 +8,7 @@ export function useRealtime(){
     const [todo, setTodo] = useState<Todos[]>([])
     const [editingTodo, setEditingTodo] = useState<Todos | null>(null)
 
+    
     //Read from Database Realtime
     useEffect(()=>{
         const todoRef = ref(database,"todos");
