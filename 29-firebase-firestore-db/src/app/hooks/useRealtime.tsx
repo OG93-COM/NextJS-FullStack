@@ -3,7 +3,6 @@ import { database } from "../db/firebaseConfig";
 import { push, ref, onValue, update, remove } from "firebase/database";
 import { Todos } from "../Types/useTypes";
 
-
 export function useRealtime(){
     const [todo, setTodo] = useState<Todos[]>([])
     const [editingTodo, setEditingTodo] = useState<Todos | null>(null)
