@@ -1,3 +1,4 @@
+// Data Type Form
 export type DataType = {
     id:string,
     lastName:string,
