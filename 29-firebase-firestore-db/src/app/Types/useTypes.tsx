@@ -1,4 +1,4 @@
-// Data Type Form
+// Data Type Form Input
 export type DataType = {
     id:string,
     lastName:string,
