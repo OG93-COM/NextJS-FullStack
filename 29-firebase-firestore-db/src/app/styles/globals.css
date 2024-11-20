@@ -6,7 +6,7 @@
 h1 {
     @apply font-bold text-2xl
   }
-  
+
   .my-btn {
     @apply flex items-center gap-2 my-2 py-2 px-4 text-sm rounded-xl bg-gray-100 hover:bg-gray-200 duration-200
   }
