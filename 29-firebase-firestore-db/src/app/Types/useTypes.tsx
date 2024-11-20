@@ -12,6 +12,7 @@ export type DataType = {
     image:string,
 }
 
+
 // Type of our CRUD
 export type DbContextType = {
     members: DataType[],
