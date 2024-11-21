@@ -12,7 +12,7 @@ export default async function TaskTab() {
         {tasks.length === 0 ? (
             <div>Nothing Found</div>
         ) : (
-            <table className="max-w-[700px] mt-2 m-auto border-collapse border border-gray-200 ">
+            <table className="max-w-[700px] mt-2 m-auto border-collapse border border-gray-200 text-center">
                 <thead>
                     <tr>
                         <th className="border-gray-300 px-4 py-2">ID</th>
@@ -29,7 +29,7 @@ export default async function TaskTab() {
                             <td className="border-gray-300 px-4 py-2 font-light">{item.completed ? "✅" : " ❌"}</td>
                             <td className="flex justify-end items-center gap-2 px-4 py-2">
                                 <Link href={`task/${item.id}`}><EditButton/></Link>
-                                <DeleteButton/>
+                                <DeleteButton id={item.id}/>
                             </td>
                         </tr>
                     ))}
