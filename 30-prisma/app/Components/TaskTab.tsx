@@ -6,7 +6,6 @@ import EditButton from "./EditButton"
 
 export default async function TaskTab() {
     const tasks = await getAllTasks()
-    console.log(tasks)
   return (
     <div>
         {tasks.length === 0 ? (
