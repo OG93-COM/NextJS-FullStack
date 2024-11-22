@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent } from "react"
 import * as yup from "yup"
+import useClientAuth from "@/app/hooks/useClient"
 
 interface FormData {
   email:string,
@@ -18,6 +19,8 @@ export default function SignInAndUpPage() {
   const [formData, setFormData] = useState<FormData>({email:"", password:""})
   const [errors, setErrors] = useState<Partial<FormData>>({})
 
+  const {user, signUp, signIn, loginWithGoogle, redirectAuthenticated} = useClientAuth()
+
   const handleFormChange = ()=> {
     setIsSignUpActive(!isSignUpActive)
     setFormData({email:"", password:""})
@@ -31,11 +34,29 @@ export default function SignInAndUpPage() {
   }
 
   const handleSignUp = () => {
-
+    schema.validate(formData, {abortEarly:false}).then(()=>{
+      signUp(formData.email, formData.password)
+    })
+    .catch((validationError: yup.ValidationError)=>{
+      const formattedError:Partial<FormData>={}
+      validationError.inner.forEach(error => {
+        formattedError[error.path as keyof FormData]= error.message
+      })
+      setErrors(formattedError)
+    })
   }
 
   const handleSignIn = () => {
-    
+    schema.validate(formData, {abortEarly:false}).then(()=>{
+      signIn(formData.email, formData.password)
+    })
+    .catch((validationError: yup.ValidationError)=>{
+      const formattedError:Partial<FormData>={}
+      validationError.inner.forEach(error => {
+        formattedError[error.path as keyof FormData]= error.message
+      })
+      setErrors(formattedError)
+    })
   }
 
   return (
