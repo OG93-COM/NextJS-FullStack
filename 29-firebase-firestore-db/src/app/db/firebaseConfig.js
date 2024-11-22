@@ -5,6 +5,9 @@ import {getStorage} from  'firebase/storage'
 //Realtime Database
 import { getDatabase } from "firebase/database";
 
+//Firebase Authentification
+import { getAuth } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -23,3 +26,6 @@ export const storage = getStorage(app)
 
 //Realtime Database
 export const database = getDatabase(app)
+
+//Firebase Authentification
+export const auth = getAuth(app)
