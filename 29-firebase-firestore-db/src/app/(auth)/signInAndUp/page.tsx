@@ -3,12 +3,39 @@
 import { useState, ChangeEvent } from "react"
 import * as yup from "yup"
 
+interface FormData {
+  email:string,
+  password:string,
+}
+const schema = yup.object().shape({
+  email: yup.string().email("Email Invalid").required("Email Required"),
+  password:  yup.string().required("Password Required")
+})
+
 export default function SignInAndUpPage() {
 
   const [isSignUpActive, setIsSignUpActive] = useState<boolean>(false)
+  const [formData, setFormData] = useState<FormData>({email:"", password:""})
+  const [errors, setErrors] = useState<Partial<FormData>>({})
 
   const handleFormChange = ()=> {
     setIsSignUpActive(!isSignUpActive)
+    setFormData({email:"", password:""})
+    setErrors({})
+  }
+
+  const handleInputChange = (event: ChangeEvent <HTMLInputElement>) => {
+    const {name,value} = event.target;
+    setFormData(prevData => ({...prevData, [name]:value}))
+    console.log(formData)
+  }
+
+  const handleSignUp = () => {
+
+  }
+
+  const handleSignIn = () => {
+    
   }
 
   return (
@@ -20,17 +47,19 @@ export default function SignInAndUpPage() {
         )}
       <form className="max-w-[750px] min-w-[400px] flex flex-col gap-2 bg-slate-50 p-5 rounded-md shadow-md">
         <label htmlFor="email" className="text-slate-800">Email</label>
-        <input type="email" name="email" id="email" className="h-10 border border-slate-500 rounded-md p-4"/>
+        <input onChange={handleInputChange} value={formData.email} type="email" name="email" id="email" className="h-10 border border-slate-500 rounded-md p-4"/>
+          {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
         <label htmlFor="Password" className="text-slate-800">Password</label>
-        <input type="Password" name="Password" id="Password" className="h-10 border border-slate-500 rounded-md p-4"/>
+        <input onChange={handleInputChange} value={formData.password} type="Password" name="Password" id="Password" className="h-10 border border-slate-500 rounded-md p-4"/>
+          {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
         {isSignUpActive ? (
           <>
-            <button className="bg-slate-600 hover:bg-slate-500 text-white rounded-md p-2">Create</button>
+            <button onClick={handleSignUp} className="bg-slate-600 hover:bg-slate-500 text-white rounded-md p-2">Create</button>
             <p onClick={()=> handleFormChange()} className="cursor-pointer hover:text-slate-400 text-sm">You Have already an account</p>
           </>
         ):(
           <>
-            <button className="bg-slate-600 hover:bg-slate-500 text-white rounded-md p-2">Login</button>
+            <button onClick={handleSignIn} className="bg-slate-600 hover:bg-slate-500 text-white rounded-md p-2">Login</button>
             <p onClick={()=> handleFormChange()} className="cursor-pointer hover:text-slate-400 text-sm">Don't Have account</p>
           </>
         )}
