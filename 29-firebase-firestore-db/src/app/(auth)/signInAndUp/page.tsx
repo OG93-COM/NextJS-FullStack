@@ -3,6 +3,8 @@
 import { useState, ChangeEvent } from "react"
 import * as yup from "yup"
 import useClientAuth from "@/app/hooks/useClient"
+import { FaGoogle } from "react-icons/fa";
+
 
 interface FormData {
   email:string,
@@ -90,7 +92,19 @@ export default function SignInAndUpPage() {
             <p onClick={()=> handleFormChange()} className="cursor-pointer hover:text-slate-400 text-sm">Don't Have account</p>
           </>
         )}
-        
+
+          <button onClick={loginWithGoogle}  className="border border-gray-500  hover:bg-gray-200 text-slate-600 rounded-md p-2">
+          {isSignUpActive ? (
+          <div className="flex  items-center justify-center gap-3">
+            <FaGoogle /> SignUp With Google
+          </div>
+          ) : (
+            <div className="flex  items-center justify-center gap-3">
+              <FaGoogle /> Login With Google
+            </div>
+          )}
+        </button>
+
       </form>
     </section>
   )
