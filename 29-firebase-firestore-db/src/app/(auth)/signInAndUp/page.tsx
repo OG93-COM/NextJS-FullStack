@@ -19,7 +19,7 @@ export default function SignInAndUpPage() {
   const [formData, setFormData] = useState<FormData>({email:"", password:""})
   const [errors, setErrors] = useState<Partial<FormData>>({})
 
-  const {user, signUp, signIn, loginWithGoogle, redirectAuthenticated} = useClientAuth()
+  const {user, signUp, signIn,isFetch, loginWithGoogle, redirectAuthenticated} = useClientAuth()
 
   const handleFormChange = ()=> {
     setIsSignUpActive(!isSignUpActive)
@@ -59,6 +59,12 @@ export default function SignInAndUpPage() {
     })
   }
 
+  if(isFetch){
+    return <p>Loading ...</p>
+  }
+
+  redirectAuthenticated()
+
   return (
     <section className="w-full h-screen flex justify-center items-center flex-col gap-5">
         {isSignUpActive ? (
@@ -70,8 +76,8 @@ export default function SignInAndUpPage() {
         <label htmlFor="email" className="text-slate-800">Email</label>
         <input onChange={handleInputChange} value={formData.email} type="email" name="email" id="email" className="h-10 border border-slate-500 rounded-md p-4"/>
           {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
-        <label htmlFor="Password" className="text-slate-800">Password</label>
-        <input onChange={handleInputChange} value={formData.password} type="Password" name="Password" id="Password" className="h-10 border border-slate-500 rounded-md p-4"/>
+        <label htmlFor="password" className="text-slate-800">Password</label>
+        <input onChange={handleInputChange} value={formData.password} type="password" name="password" id="password" className="h-10 border border-slate-500 rounded-md p-4"/>
           {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
         {isSignUpActive ? (
           <>
