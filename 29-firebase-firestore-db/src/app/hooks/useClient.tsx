@@ -62,7 +62,7 @@ const useClientAuth = () => {
     }
 
 
-    return {user, signUp, signIn, loginWithGoogle, redirectAuthenticated}
+    return {user, signUp, signIn,isFetch, loginWithGoogle, redirectAuthenticated}
 
 }
 
