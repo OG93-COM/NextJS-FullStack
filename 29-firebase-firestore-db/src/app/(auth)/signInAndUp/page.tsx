@@ -16,6 +16,7 @@ const schema = yup.object().shape({
   password:  yup.string().required("Password Required")
 })
 
+
 export default function SignInAndUpPage() {
 
   const [isSignUpActive, setIsSignUpActive] = useState<boolean>(false)
