@@ -8,7 +8,6 @@ import { useEffect } from "react"
 export default function Dashboard() {
   const {user, redirectAuthenticated} = useClientAuth()
   const router = useRouter()
-  console.log(user)
 
   useEffect(()=>{
     redirectAuthenticated()
