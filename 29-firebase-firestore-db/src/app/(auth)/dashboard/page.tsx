@@ -26,6 +26,5 @@ export default function Dashboard() {
       <p>My  Email : {user?.email}</p>
       <button onClick={handleLogOut} className="bg-slate-600 hover:bg-slate-500 text-white rounded-md p-2">Logout</button>
     </div>
-
   )
 }
