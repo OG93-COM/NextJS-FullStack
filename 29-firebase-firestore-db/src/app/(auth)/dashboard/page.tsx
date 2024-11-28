@@ -5,6 +5,7 @@ import {auth} from '../../db/firebaseConfig'
 import useClientAuth from "@/app/hooks/useClient"
 import { useEffect } from "react"
 
+
 export default function Dashboard() {
   const {user, redirectAuthenticated} = useClientAuth()
   const router = useRouter()
