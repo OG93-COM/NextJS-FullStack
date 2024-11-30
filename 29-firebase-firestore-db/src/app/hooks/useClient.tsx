@@ -61,7 +61,6 @@ const useClientAuth = () => {
         }
     }
 
-
     return {user, signUp, signIn,isFetch, loginWithGoogle, redirectAuthenticated}
 
 }
