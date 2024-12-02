@@ -5,7 +5,6 @@ import * as yup from "yup"
 import useClientAuth from "@/app/hooks/useClient"
 import { FaGoogle } from "react-icons/fa";
 
-
 interface FormData {
   email:string,
   password:string,
